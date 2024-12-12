@@ -37,3 +37,12 @@ func DeleteProductService(request DeleteRequest) (models.Product, error) {
 	}
 	return product, nil
 }
+
+func FilterProductService(request FilterRequest) ([]models.Product, error) {
+	product, err := Filter(request)
+	if err != nil {
+		return []models.Product{}, err
+	}
+	return product, nil
+}
+

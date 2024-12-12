@@ -37,3 +37,12 @@ func UpdateTagService(request UpdateRequest) (models.Tag, error) {
 	}
 	return tag, nil
 }
+
+func FilterTagService(request FilterRequest) ([]models.Tag, error) {
+	tag, err := Filter(request)
+	if err != nil {
+		return []models.Tag{}, err
+	}
+	return tag, nil
+}
+

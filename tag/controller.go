@@ -74,3 +74,19 @@ func UpdateTag(c iris.Context) {
 	c.StatusCode(iris.StatusCreated)
 	c.JSON(brand)
 }
+
+func FilterTag(c iris.Context) {
+	var request FilterRequest
+	if err := c.ReadJSON(&request); err != nil {
+		c.StatusCode(iris.StatusBadRequest)
+		return
+	}
+
+	products, err := FilterTagService(request)
+	if err != nil {
+		c.StatusCode(iris.StatusBadRequest)
+		return
+	}
+	c.StatusCode(iris.StatusCreated)
+	c.JSON(products)
+}

@@ -6,6 +6,7 @@ func BrandTransformer(row models.Brand) BrandResponse {
 	return BrandResponse{
 		ID:   row.ID,
 		Name: row.Name,
+		Created_At : row.CreatedAt,
 	}
 }
 

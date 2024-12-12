@@ -3,6 +3,9 @@ package product
 import (
 	"project/Database"
 	"project/Database/models"
+	"project/common"
+
+	"gorm.io/gorm"
 )
 
 func AllProduct() ([]models.Product, error) {
@@ -48,4 +51,29 @@ func deleteProductRow(request DeleteRequest) (models.Product, error) {
 		return models.Product{}, err
 	}
 	return product, nil
+}
+
+
+func Filter(request FilterRequest) ([]models.Product, error) {
+	db := Database.DB
+	if request.Search != "" {
+		db = db.Where("name LIKE ?", "%"+request.Search+"%")
+	}
+	db = filterByDate(request.StartDate, request.EndDate, db)
+	if request.Column != "" && request.Type != "" {
+		db = common.OrderBy(request.Column, request.Type, db)
+	}
+	var rows []models.Product
+	err := db.Find(&rows).Error
+	return rows, err
+}
+
+func filterByDate(startDate, endDate string, db *gorm.DB) *gorm.DB {
+	if startDate != "" {
+		db = common.FilterByField("created_at", ">=", startDate, db)
+	}
+	if startDate != "" {
+		db = common.FilterByField("created_at", "<=", endDate, db)
+	}
+	return db
 }

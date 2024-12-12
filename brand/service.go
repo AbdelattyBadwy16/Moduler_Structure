@@ -37,3 +37,11 @@ func UpdateBrandService(request UpdateRequest) (models.Brand, error) {
 	}
 	return brand, nil
 }
+
+func FilterBrandService(request FilterRequest) ([]models.Brand, error) {
+	brand, err := Filter(request)
+	if err != nil {
+		return []models.Brand{}, err
+	}
+	return brand, nil
+}

@@ -14,3 +14,11 @@ type UpdateRequest struct {
 type DeleteRequest struct {
 	Id uint `json:"id" validate:"required"`
 }
+
+type FilterRequest struct {
+	Search    string `json:"search"`
+	StartDate string `json:"start_date" example:"2023-10-20T00:00:00Z"`
+	EndDate   string `json:"end_date" example:"2023-10-20T22:00:00Z"`
+	Column    string `json:"column"`
+	Type      string `json:"type"`
+}

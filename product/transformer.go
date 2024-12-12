@@ -4,9 +4,10 @@ import "project/Database/models"
 
 func ProductTransformer(row models.Product) ProductResponse {
 	return ProductResponse{
-		ID:   row.ID,
-		Name: row.Name,
-		BrandID : row.BrandID,
+		ID:         row.ID,
+		Name:       row.Name,
+		BrandID:    row.BrandID,
+		Created_At: row.CreatedAt,
 	}
 }
 

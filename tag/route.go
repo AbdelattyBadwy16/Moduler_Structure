@@ -8,4 +8,5 @@ func Routes(app *iris.Application) {
 	group.Post("/create", CreateTag)
 	group.Patch("/update",UpdateTag)
 	group.Delete("/delete",DeleteTag)
+	group.Get("/show",FilterTag)
 }

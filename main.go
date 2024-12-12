@@ -14,7 +14,7 @@ func main() {
 	godotenv.Load()
 	Database.InitDB()
 	app := iris.New()
-
+	
 	product.Routes(app)
 	brand.Routes(app)
 	tag.Routes(app)
