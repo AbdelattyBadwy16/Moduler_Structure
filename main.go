@@ -1,21 +1,21 @@
 package main
 
 import (
+	"project/Database"
+	"project/brand"
+	"project/product"
+	"project/tag"
+
 	"github.com/kataras/iris/v12"
 )
 
 func main() {
-	InitDB()
+	Database.InitDB()
 	app := iris.New()
 
-	app.Get("/products", getAllProducts)
-	app.Post("/products", createProduct)
-	app.Patch("/products/{id:int}", UpdateProduct)
-	app.Delete("/products/{id:int}", DeleteProduct)
-	app.Get("/brands", getALlBrands)
-	app.Post("/brands", createBrand)
-	app.Get("/tags", getAllTags)
-	app.Post("/tags", createTag)
+	product.Routes(app)
+	brand.Routes(app)
+	tag.Routes(app)
 
 	app.Listen(":8080")
 }

@@ -1,9 +1,9 @@
-package product
+package models
 
 type Product struct {
 	ID      uint   `gorm:"primaryKey"`
 	Name    string `json:"name"`
 	BrandID uint   `json:"brand_id"`
-	Brand   Brand
-	Tags    []Tag `gorm:"many2many:product_tags;"`
+	Brand   Brand  `gorm:"foreignKey:BrandID;references:ID"`
+	Tags    []Tag  `gorm:"many2many:product_tags;"`
 }
