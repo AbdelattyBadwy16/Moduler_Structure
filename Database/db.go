@@ -2,6 +2,7 @@ package Database
 
 import (
 	"fmt"
+	"os"
 
 	"project/Database/models"
 
@@ -14,7 +15,7 @@ var DB *gorm.DB
 func InitDB() {
 	var err error
 
-	dsn := "host=localhost user=postgres password=admin dbname=GoTest port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	dsn := os.Getenv("CONN_STR")
 
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
@@ -28,5 +29,3 @@ func InitDB() {
 		fmt.Println("Faild To Migrate. ", err)
 	}
 }
-
-
